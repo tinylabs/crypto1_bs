@@ -7,8 +7,8 @@
 
 CC     = gcc
 
-CFLAGS = -std=gnu99 -O3 -march=native
-LDFLAGS = -Wl,--allow-multiple-definition
+CFLAGS = -std=gnu99 -O3 -march=native -fcommon
+#LDFLAGS = -Wl,--allow-multiple-definition
 
 all: solve_bs solve_piwi_bs solve_piwi libnfc_crypto1_crack
 
