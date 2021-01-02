@@ -8,6 +8,7 @@
 CC     = gcc
 
 CFLAGS = -std=gnu99 -O3 -march=native
+LDFLAGS = -Wl,--allow-multiple-definition
 
 all: solve_bs solve_piwi_bs solve_piwi libnfc_crypto1_crack
 
@@ -16,16 +17,16 @@ CRAPTO1 = crapto1-v3.3/crapto1.c crapto1-v3.3/crypto1.c -I crapto1-v3.3/
 CRYPTO1_BS = crypto1_bs.c crypto1_bs_crack.c 
 
 solve_bs:
-	$(CC) $(CFLAGS) $@.c $(CRYPTO1_BS) $(CRAPTO1) ${CRAPTEV1} -o $@ -lpthread -lm
+	$(CC) $(CFLAGS) $(LDFLAGS) $@.c $(CRYPTO1_BS) $(CRAPTO1) ${CRAPTEV1} -o $@ -lpthread -lm
 
 solve_piwi_bs:
-	$(CC) $(CFLAGS) $@.c $(CRYPTO1_BS) $(CRAPTO1) ${CRAPTEV1} -o $@ -lpthread -lm
+	$(CC) $(CFLAGS) $(LDFLAGS) $@.c $(CRYPTO1_BS) $(CRAPTO1) ${CRAPTEV1} -o $@ -lpthread -lm
 
 solve_piwi:
-	$(CC) $(CFLAGS) $@.c $(CRYPTO1_BS) $(CRAPTO1) ${CRAPTEV1} -o $@ -lpthread
+	$(CC) $(CFLAGS) $(LDFLAGS) $@.c $(CRYPTO1_BS) $(CRAPTO1) ${CRAPTEV1} -o $@ -lpthread
 
 libnfc_crypto1_crack:
-	$(CC) $(CFLAGS) $@.c $(CRYPTO1_BS) $(CRAPTO1) ${CRAPTEV1} -o $@ -lpthread -lnfc -lm
+	$(CC) $(CFLAGS) $(LDFLAGS) $@.c $(CRYPTO1_BS) $(CRAPTO1) ${CRAPTEV1} -o $@ -lpthread -lnfc -lm
 
 clean:
 	rm -f solve.so solve_bs solve_piwi_bs solve_piwi libnfc_crypto1_crack
